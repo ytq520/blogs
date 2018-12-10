@@ -1,0 +1,119 @@
+
+{% extends 'backweb/base.html' %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/backweb/css/sty.css">
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    <div id="logo">
+
+    </div>
+      <div class="header">
+        <div id="btn">
+          <input type="text" placeholder="输入关键字搜索" >
+            <button type="submit">搜索</button>
+          </div>
+          <ul>
+            <li id="news"><a href="" onClick="if(!confirm('改功能尚未开发，请等待'))return false;">消息</a></li>
+            <li><a href=""  onClick="if(!confirm('暂时无法查询个人信息！'))return false;"> {{ user.username }}</a></li>
+            <li><a href="{% url 'art:logout' %}" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
+            <li><a href="" onClick="if(!confirm('改功能尚未开发，请等待'))return false;">帮助</a></li>
+
+          </ul>
+
+       </div>
+
+  <div id="comment">
+        <div id="left">
+          <ul>
+            <li><a href="{% url 'art:index' %}">文章</a></li>
+          </ul>
+            <ul>
+                <li><a href="{% url 'art:recommend' %}">推荐</a></li>
+            </ul>
+            <ul>
+                <li><a href="" onClick="if(!confirm('改功能尚未开发，请等待'))return false;">评论</a></li>
+            </ul>
+            <ul>
+                <li><a href="{% url 'art:review' %}">类型</a></li>
+            </ul>
+
+          <ul>
+              <li><a href="{% url 'art:user' %}">用户</a></li>
+
+          </ul>
+          <ul>
+            <li><a href="" onClick="if(!confirm('改功能尚未开发，请等待'))return false;">设置</a>
+            </li>
+          </ul>
+
+        </div>
+      <div id="content">
+         <h4 id="book">用户总览</h4>
+        <hr>
+        <table>
+            <tbody>
+                <tr id="th">
+                    <td>编号</td>
+                    <td>用户名</td>
+                    <td>密码</td>
+                    <td>创建时间</td>
+                    <td>操作</td>
+                </tr>
+
+                {% for user in users %}
+                <tr id="th2">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.password }}</td>
+                    <td>{{ user.create_time }}</td>
+                    <td>
+                        <a href="{% url 'art:del_user' user.id %}">删除</a>
+                    </td>
+
+
+                </tr>
+
+                {% endfor %}
+            </tbody>
+
+        </table>
+          <div id="page">
+              <p id="pg">
+                  共 {{ pages.paginator.num_pages }} 页
+                  当前 {{ pages.number }} 页
+                  共 {{ pages.paginator.count }} 条数据
+                  <a href="{% url 'art:index' %}?page={{ 1 }}">首页</a>
+                  {% if pages.has_previous %}
+                  <a href="{% url 'art:index' %}?page={{ pages.previous_page_number }}">上一页</a>
+                  {% endif %}
+                  {% for i in pages.paginator.page_range %}
+                    <a href="{% url 'art:index' %}?page={{ i }}">{{ i }}</a>
+                  {% endfor %}
+                  {% if pages.has_next %}
+                  <a href="{% url 'art:index' %}?page={{ pages.next_page_number }}">下一页</a>
+
+                  {% endif %}
+                  <a href="{% url 'art:index' %}?page={{ pages.paginator.num_pages }}">尾页</a>
+
+
+              </p>
+
+          </div>
+
+      </div>
+
+
+  </div>
+
+  {% block js %}
+
+  {% endblock %}
+{% endblock %}

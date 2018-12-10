@@ -1,0 +1,81 @@
+
+{% extends 'backweb/base.html' %}
+
+{% block title %}
+    推荐
+{% endblock %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/backweb/css/sty.css">
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    <div id="logo">
+
+    </div>
+      <div class="header">
+        <div id="btn">
+          <input type="text" placeholder="输入关键字搜索" >
+            <button type="submit">搜索</button>
+          </div>
+          <ul>
+            <li id="news"><a href="" onClick="if(!confirm('改功能尚未开发，请等待'))return false;">消息</a></li>
+            <li><a href=""  onClick="if(!confirm('暂时无法查询个人信息！'))return false;"> {{ user.username }}</a></li>
+            <li><a href="{% url 'art:logout' %}" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
+            <li><a href="" onClick="if(!confirm('改功能尚未开发，请等待'))return false;">帮助</a></li>
+
+          </ul>
+
+       </div>
+
+  <div id="comment">
+        <div id="left">
+          <ul>
+            <li><a href="{% url 'art:index' %}">文章</a></li>
+          </ul>
+            <ul>
+                <li><a href="{% url 'art:recommend' %}">推荐</a></li>
+            </ul>
+            <ul>
+                <li id="review"><a href="" onClick="if(!confirm('改功能尚未开发，请等待'))return false;">评论</a></li>
+            </ul>
+            <ul>
+                <li><a href="{% url 'art:review' %}">类型</a></li>
+            </ul>
+
+          <ul>
+              <li><a href="{% url 'art:user' %}">用户</a></li>
+
+          </ul>
+          <ul>
+              <li><a href="" onClick="if(!confirm('改功能尚未开发，请等待'))return false;">设置</a></li>
+
+          </ul>
+
+        </div>
+      <div id="content">
+         <h4 id="book">推荐书籍</h4>
+        <hr>
+          <div id="rec">
+              <p><img src="/static/backweb/img/01.jpg" alt=""></p>
+              <p><img src="/static/backweb/img/02.jpg" alt=""></p>
+              <p><img src="/static/backweb/img/03.jpg" alt=""></p>
+              <p><img src="/static/backweb/img/04.jpg" alt=""></p>
+              <p><img src="/static/backweb/img/05.jpg" alt=""></p>
+              <p><img src="/static/backweb/img/06.jpg" alt=""></p>
+              <p><img src="/static/backweb/img/07.jpg" alt=""></p>
+              <p><img src="/static/backweb/img/08.jpg" alt=""></p>
+              <p><img src="/static/backweb/img/09.jpg" alt=""></p>
+              <p><img src="/static/backweb/img/10.jpg" alt=""></p>
+          </div>
+
+      </div>
+
+
+  </div>
+  {% block js %}
+
+  {% endblock %}
+{% endblock %}

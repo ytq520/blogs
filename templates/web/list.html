@@ -1,0 +1,61 @@
+{% extends 'web/base.html' %}
+
+{% block title %}
+    肖炜的博客
+{% endblock %}
+
+{% block css %}
+<link href="/static/web/css/base.css" type="text/css" rel="stylesheet"/>
+<link href="/static/web/css/index.css" rel="stylesheet"/>
+<link href="/static/web/css/m.css" rel="stylesheet" />
+{% endblock %}
+
+
+{% block content %}
+
+        <header class="header-navigation", id="header">
+			<img src="/static/web/img/logo.png">
+			<nav><div class="logo"><a href="{% url 'art:login' %}">肖炜个人博客</a></div>
+			<h2 id="mnavh"><span class="navicon"></span></h2>
+			<ul id="starlist">
+				<li><a href="{% url 'web:index' %}">网站首页</a></li>
+				<li><a href="{% url 'web:post' %}">我的笔记</a></li>
+				<li><a href="{% url 'web:about' %}">关于我</a></li>
+			</ul>
+		</nav>
+		</header>
+		<article>
+			<aside class="l_box">
+				<div class="search">
+                    <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
+                        <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
+                        <input name="show" value="title" type="hidden">
+                        <input name="tempid" value="1" type="hidden">
+                        <input name="tbname" value="news" type="hidden">
+                        <input name="Submit" class="input_submit" value="搜索" type="submit">
+                    </form>
+                </div>
+				<div class="fenlei">
+					<h2>文章分类</h2>
+					<ul>
+                        {% for type,value in dict.items %}
+						<li>{{ type.t_name }}&nbsp;({{value}})</li>
+                        {% endfor %}
+
+					</ul>
+				</div>
+			</aside>
+			<main class="r_box">
+                {% for art in pages %}
+				<li>
+					<i><a href=""><img src="/static/web/img/tx.jpg"></a></i>
+					<h3><a href="">{{ art.title }}</a></h3>
+					<p><a href="">{{ art.desc }}</a></p>
+				</li>
+                {% endfor %}
+			</main>
+		</article>
+		<footer>
+			<p>Design by <a href="xwytq.top" target="_blank">肖炜个人网站</a>&emsp;蜀ICP备18036499号</p>
+		</footer>
+{% endblock %}

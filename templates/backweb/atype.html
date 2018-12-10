@@ -1,0 +1,88 @@
+
+{% extends 'backweb/base.html' %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/backweb/css/sty.css">
+<link rel="stylesheet" type="text/css" href="/static/backweb/css/atype.css">
+
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    <div id="logo">
+
+    </div>
+      <div class="header">
+        <div id="btn">
+          <input type="text" placeholder="输入关键字搜索" >
+            <button type="submit">搜索</button>
+          </div>
+          <ul>
+            <li id="news"><a href="" onClick="if(!confirm('改功能尚未开发，请等待'))return false;">消息</a></li>
+            <li><a href=""  onClick="if(!confirm('暂时无法查询个人信息！'))return false;"> {{ user.username }}</a></li>
+            <li><a href="{% url 'art:logout' %}" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
+            <li><a href="" onClick="if(!confirm('改功能尚未开发，请等待'))return false;">帮助</a></li>
+
+          </ul>
+
+       </div>
+
+  <div id="comment">
+        <div id="left">
+          <ul>
+            <li><a href="{% url 'art:index' %}">文章</a></li>
+          </ul>
+            <ul>
+                <li><a href="{% url 'art:recommend' %}">推荐</a></li>
+            </ul>
+            <ul>
+                <li id="review"><a href="" onClick="if(!confirm('改功能尚未开发，请等待'))return false;">评论</a></li>
+            </ul>
+            <ul>
+                <li><a href="{% url 'art:review' %}">类型</a></li>
+            </ul>
+
+          <ul>
+              <li><a href="{% url 'art:user' %}">用户</a></li>
+          </ul>
+          <ul>
+              <li><a href="" onClick="if(!confirm('改功能尚未开发，请等待'))return false;">设置</a></li>
+          </ul>
+
+        </div>
+      <div id="content">
+         <h4 id="book">文章类型</h4>
+        <hr>
+        <table>
+            <tbody>
+                <tr id="tp">
+                    <td>编号</td>
+                    <td>课程</td>
+                    <td>数量</td>
+                </tr>
+                {% for type,value in dict.items %}
+                    <tr id="tp1">
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ type.t_name }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+      </div>
+
+
+  </div>
+
+  {% block js %}
+
+  {% endblock %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'backweb/base.html' %}
+    {% block title %}
+        登录
+    {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/backweb/css/login.css">
+{% endblock %}
+
+{% block content %}
+
+    <form action="" method="post">
+        <p id="login">login</p>
+        <div>
+            {{ err_user }}
+            {% csrf_token %}
+        <p>账户：<input type="text" name="username" placeholder="请输入你的账号"></p>
+        <p>密码：<input type="password" name="password" placeholder="请输入密码"></p>
+        </div>
+        <p id="submit"><button>登录</button></p>
+    </form>
+{% block js %}
+{% endblock %}
+{% endblock %}

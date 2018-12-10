@@ -1,0 +1,39 @@
+
+body{
+    background-image: url('/static/backweb/img/bg.jpg');
+}
+form{
+    width: 300px;
+    height: 220px;
+    border: 2px solid rgb(22,204,228);
+    position: absolute;
+    top: 240px;
+    left: 550px;
+
+}
+
+#login{
+	font-size: 24px;
+	color:red;
+	margin-top:20px;
+	margin-left:120px;
+
+
+}
+div{
+    margin-top: 10px;
+    margin-left: 45px;
+
+}
+div p{
+    margin-top:10px;
+}
+button{
+    margin-bottom：30px;
+    width: 50px;
+    height: 30px;
+    border: none;
+    margin-left: 120px;
+    background: red;
+    color: white;
+}

@@ -1,0 +1,34 @@
+{% extends 'backweb/base.html' %}
+
+{% block title %}
+   添加文章
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/backweb/css/sty.css">
+{% endblock %}
+
+{% block js %}
+    {% load static %}
+    <script src="{% static 'kindeditor/kindeditor-all-min.js' %}" ></script>
+    <script src="{% static 'kindeditor/lang/zh-CN.js' %}"></script>
+    <script type="text/javascript">
+        KindEditor.ready(function(K) {
+            window.editor = K.create('#editor_id',{
+                uploadJson:'/util/upload/kindeditor'
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>标题：<input type="text" name="title" value="{{ article.title }}"></p>{{ form.errors.title }}
+    <p>作者：<input type="text" name="author" value="{{ article.author }}"></p>{{ form.errors.author }}
+    <p>简述：<input type="text" name="desc" value="{{ article.desc }}"></p>{{ form.errors.desc }}
+    <p>内容：<textarea id="editor_id" name="content" >{{ article.content }}</textarea></p>{{ form.errors.content}}
+    <p>类别：<input type="number" name="tf" placeholder="输入(1~5)">{{ article.tf }}</p>{{ err_name }}
+    <input id="sub" type="submit" value="提交">
+</form>
+{% endblock %}
